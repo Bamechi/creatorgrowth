@@ -39,7 +39,7 @@
   --paper: #ddd8cb;
   --gold: #c7a259;
   --ember: #e74629;
-  --signal: #a8f4e4;
+  --signal: #d8ad55;
   --steel: #91a0a6;
   --line-dark: rgba(242, 239, 231, 0.2);
   --line-light: rgba(7, 7, 7, 0.18);
@@ -234,7 +234,7 @@ button:hover .arrow-mark {
   width: 68px;
   height: 84px;
   object-fit: contain;
-  filter: drop-shadow(0 0 26px rgba(168, 244, 228, 0.3));
+  filter: drop-shadow(0 0 26px rgba(216, 173, 85, 0.34));
   animation: intro-key 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -275,7 +275,7 @@ button:hover .arrow-mark {
   transform: scaleX(0);
   transform-origin: left;
   animation: intro-progress 1.65s 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 0 22px rgba(168, 244, 228, 0.75);
+  box-shadow: 0 0 22px rgba(216, 173, 85, 0.78);
 }
 
 .site-header {
@@ -433,7 +433,7 @@ button:hover .arrow-mark {
 
 .hero h1 .hero-title-signal {
   color: var(--signal);
-  text-shadow: 0 0 8px rgba(168, 244, 228, 0.4), 0 0 34px rgba(168, 244, 228, 0.24);
+  text-shadow: 0 0 8px rgba(216, 173, 85, 0.46), 0 0 34px rgba(216, 173, 85, 0.28);
   animation: fade-up 800ms 2.08s ease both, signal-glow 2.8s 2.9s ease-in-out infinite;
 }
 
@@ -509,7 +509,7 @@ button:hover .arrow-mark {
 .marquee {
   overflow: hidden;
   border-block: 1px solid var(--line-dark);
-  background: var(--ember);
+  background: #c9131d;
   color: white;
 }
 
@@ -521,6 +521,8 @@ button:hover .arrow-mark {
 }
 
 .marquee-group {
+  flex: 0 0 auto;
+  width: max-content;
   display: flex;
   align-items: center;
   gap: 26px;
@@ -531,7 +533,7 @@ button:hover .arrow-mark {
 }
 
 .marquee-group i {
-  color: #26100b;
+  color: #400408;
   font-family: "Barlow Condensed CG", sans-serif;
   font-size: 24px;
   font-style: normal;
@@ -1345,10 +1347,10 @@ button:hover .arrow-mark {
   min-height: 720px;
   position: relative;
   display: grid;
-  place-items: center;
+  place-items: end start;
   overflow: hidden;
   isolation: isolate;
-  text-align: center;
+  text-align: left;
 }
 
 .final-cta > img,
@@ -1362,26 +1364,36 @@ button:hover .arrow-mark {
 
 .final-cta > img {
   object-fit: cover;
-  object-position: center 38%;
+  object-position: center 50%;
 }
 
 .final-cta-shade {
   z-index: -1;
-  background: rgba(7, 7, 7, 0.78);
+  background: rgba(7, 7, 7, 0.5);
 }
 
-.final-cta > div {
-  max-width: 1020px;
-  padding: 80px 28px;
+.final-cta-content {
+  width: min(880px, 100%);
+  padding: 80px max(28px, calc((100vw - 1400px) / 2));
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.9);
 }
 
 .final-cta .eyebrow {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
+  color: #f0ca77;
 }
 
 .final-cta h2 {
-  margin: 0 auto 38px;
-  font-size: 66px;
+  max-width: 820px;
+  margin: 0 0 18px;
+  font-size: 58px;
+}
+
+.final-cta-subcopy {
+  margin: 0 0 32px;
+  color: rgba(242, 239, 231, 0.82);
+  font-family: "Newsreader CG", serif;
+  font-size: 24px;
 }
 
 footer {
@@ -1476,8 +1488,8 @@ footer small {
 }
 
 @keyframes signal-glow {
-  0%, 100% { text-shadow: 0 0 8px rgba(168, 244, 228, 0.38), 0 0 28px rgba(168, 244, 228, 0.2); }
-  50% { text-shadow: 0 0 12px rgba(168, 244, 228, 0.68), 0 0 46px rgba(168, 244, 228, 0.34); }
+  0%, 100% { text-shadow: 0 0 8px rgba(216, 173, 85, 0.42), 0 0 28px rgba(216, 173, 85, 0.22); }
+  50% { text-shadow: 0 0 12px rgba(216, 173, 85, 0.72), 0 0 46px rgba(216, 173, 85, 0.38); }
 }
 
 @keyframes title-scan {

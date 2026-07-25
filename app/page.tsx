@@ -98,8 +98,10 @@ export default function Home() {
         <div className="marquee-track">
           <div className="marquee-group">
             <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
+            <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
           </div>
           <div className="marquee-group" aria-hidden="true">
+            <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
             <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
           </div>
         </div>
@@ -307,9 +309,10 @@ export default function Home() {
       <section className="final-cta">
         <Image src="/media/marquee.jpg" alt="The Gramercy Theatre marquee reading 19Keys sold out" width={1800} height={1200} sizes="100vw" />
         <div className="final-cta-shade" />
-        <div>
-          <p className="eyebrow">Your platform can become an institution</p>
+        <div className="final-cta-content">
+          <p className="eyebrow">19Keys · Gramercy Theatre · Sold Out</p>
           <h2>Build what your vision deserves.</h2>
+          <p className="final-cta-subcopy">Your platform can become an institution.</p>
           <a className="button button-light" href="#apply">Apply to Creator Growth <ArrowMark /></a>
         </div>
       </section>
