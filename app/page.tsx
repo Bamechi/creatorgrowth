@@ -13,7 +13,7 @@ const capabilities = [
 
 const journey = [
   ["01", "Deep-Dive Research", "We study your brand, audience, offers, reach, risks, and untapped leverage before the first conversation."],
-  ["02", "Paid Discovery", "Choose a filmed session in Los Angeles or a private virtual session. We surface the real objective beneath the obvious one."],
+  ["02", "Paid Discovery", "Choose a filmed session virtually or in Los Angeles, or keep the conversation fully private. We surface the real objective beneath the obvious one."],
   ["03", "Your Growth Map", "Your goals are mapped against the full High Lvl ecosystem. The result is a precise plan built around your actual constraints."],
   ["04", "Partnership Design", "We set the scope, select the right capabilities, establish success measures, and place the right operators around you."],
   ["05", "Strategic Activation", "The work begins. 19Keys enters where his perspective, platform, or relationships create the greatest leverage."],
@@ -25,7 +25,7 @@ const faqs = [
   ["Is this coaching or a course?", "It is a custom growth partnership. Strategy is paired with implementation through the people and capabilities selected for your Growth Map."],
   ["What does the $19,000 include?", "That is the entry point for a custom engagement. Final scope is set after discovery and depends on which capabilities, production resources, and operators your plan requires."],
   ["Will I work directly with 19Keys?", "19Keys is the curator and strategic center of the program. His direct involvement is placed at the moments where it can create the most leverage for your partnership."],
-  ["Can I join from outside Los Angeles?", "Yes. Private discovery can happen virtually. Los Angeles applicants can also choose a filmed, in-person session at the High Lvl facility."],
+  ["Can I join from outside Los Angeles?", "Yes. The $333 filmed discovery is available virtually worldwide or in person at the High Lvl facility in Los Angeles. Private discovery can also happen virtually."],
   ["Why is there a paid discovery?", "The session includes pre-call research, a focused strategy conversation, and a first-look Growth Map. The fee protects the depth of the process and the quality of the room."],
 ];
 
@@ -36,6 +36,17 @@ function ArrowMark() {
 export default function Home() {
   return (
     <main>
+      <div className="intro-gate" aria-hidden="true">
+        <div className="intro-panel intro-panel-left" />
+        <div className="intro-panel intro-panel-right" />
+        <div className="intro-gate-content">
+          <Image className="intro-key" src="/media/key-logo.png" alt="" width={480} height={600} priority />
+          <span>19KEYS × HIGH LVL</span>
+          <strong><i>Creator</i><i>Growth</i></strong>
+        </div>
+        <div className="intro-progress" />
+      </div>
+
       <header className="site-header">
         <a className="brand-lockup" href="#top" aria-label="Creator Growth Program home">
           <Image src="/media/key-logo.png" alt="19Keys key mark" width={480} height={600} priority />
@@ -64,12 +75,12 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top" aria-labelledby="hero-title">
-        <Image className="hero-image" src="/media/hero-keys.jpg" alt="19Keys portrait" width={1600} height={2000} priority sizes="(max-width: 760px) 100vw, 62vw" />
+        <Image className="hero-image" src="/media/hero-keys.jpg" alt="19Keys portrait" width={1600} height={2000} priority sizes="(max-width: 900px) 100vw, 62vw" />
         <div className="hero-shade" />
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-content">
           <p className="eyebrow hero-eyebrow">Private growth partnership · By application</p>
-          <h1 id="hero-title"><span>Creator</span><span>Growth.</span></h1>
+          <h1 id="hero-title"><span className="hero-title-main">Creator</span><span className="hero-title-signal" data-text="Growth.">Growth.</span></h1>
           <p className="hero-copy">You already have the vision. We build the strategy, content, rooms, and systems around it. One partnership. Every capability. Curated by 19Keys.</p>
           <div className="hero-actions">
             <a className="button button-light" href="#apply">Apply for placement <ArrowMark /></a>
@@ -84,8 +95,13 @@ export default function Home() {
       </section>
 
       <div className="marquee" aria-label="Program outcomes">
-        <div>
-          <span>Own the audience</span><i>19</i><span>Build the platform</span><i>19</i><span>Engineer the business</span><i>19</i><span>Own the audience</span><i>19</i><span>Build the platform</span><i>19</i>
+        <div className="marquee-track">
+          <div className="marquee-group">
+            <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
+          </div>
+          <div className="marquee-group" aria-hidden="true">
+            <span>Own the audience</span><i>/</i><span>Build the platform</span><i>/</i><span>Engineer the business</span><i>/</i>
+          </div>
         </div>
       </div>
 
@@ -102,7 +118,7 @@ export default function Home() {
 
       <section className="tension" aria-label="The growth problem">
         <div className="tension-image-wrap">
-          <Image src="/media/mindset-portrait.jpg" alt="19Keys looking directly into camera" width={1200} height={1500} sizes="(max-width: 760px) 100vw, 50vw" />
+          <Image src="/media/mindset-portrait.jpg" alt="19Keys looking directly into camera" width={1200} height={1500} sizes="(max-width: 900px) 100vw, 50vw" />
           <p>Mindset creates the vision.<br />Infrastructure carries it.</p>
         </div>
         <div className="tension-copy">
@@ -132,7 +148,7 @@ export default function Home() {
       </section>
 
       <section className="image-statement">
-        <Image src="/media/gold-room.jpg" alt="19Keys seated behind reflective gold objects" width={1245} height={1600} sizes="(max-width: 760px) 100vw, 50vw" />
+        <Image src="/media/gold-room.jpg" alt="19Keys seated behind reflective gold objects" width={1245} height={1600} sizes="(max-width: 900px) 100vw, 50vw" />
         <div>
           <p className="eyebrow">The principle</p>
           <h2>Build the machine behind the message.</h2>
@@ -158,7 +174,7 @@ export default function Home() {
 
       <section className="authority" id="19keys">
         <div className="authority-photo">
-          <Image src="/media/stage.jpg" alt="19Keys standing on the High Level Conversations stage" width={1440} height={1800} sizes="(max-width: 760px) 100vw, 45vw" />
+          <Image src="/media/stage.jpg" alt="19Keys standing on the High Level Conversations stage" width={1440} height={1800} sizes="(max-width: 900px) 100vw, 45vw" />
         </div>
         <div className="authority-copy">
           <p className="eyebrow">Curated by 19Keys</p>
@@ -181,10 +197,10 @@ export default function Home() {
           <p>Creator Growth is connected to an active media, production, community, and relationship ecosystem. The program is where those assets become coordinated around your next chapter.</p>
         </div>
         <div className="gallery-grid">
-          <figure className="gallery-wide reveal"><Image src="/media/conversation.jpg" alt="19Keys speaking onstage with a guest" width={1800} height={1200} sizes="(max-width: 760px) 100vw, 90vw" /><figcaption>Ideas that move rooms</figcaption></figure>
+          <figure className="gallery-wide gallery-conversation reveal"><Image src="/media/conversation.jpg" alt="19Keys speaking onstage with a guest" width={1800} height={1200} sizes="(max-width: 900px) 100vw, 90vw" /><figcaption>Ideas that move rooms</figcaption></figure>
           <figure className="reveal"><Image src="/media/network.jpg" alt="19Keys with entrepreneurs and creators" width={1800} height={1357} sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>Relationships with range</figcaption></figure>
           <figure className="reveal"><Image src="/media/partner.jpg" alt="19Keys with a creative industry leader" width={1800} height={1199} sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>Culture meets enterprise</figcaption></figure>
-          <figure className="gallery-wide reveal"><Image src="/media/event.jpg" alt="19Keys at a live community event" width={1800} height={1198} sizes="(max-width: 760px) 100vw, 90vw" /><figcaption>Built for the public stage</figcaption></figure>
+          <figure className="gallery-wide gallery-event reveal"><Image src="/media/event.jpg" alt="19Keys at a live community event" width={1800} height={1198} sizes="(max-width: 900px) 100vw, 90vw" /><figcaption>Built for the public stage</figcaption></figure>
         </div>
       </section>
 
@@ -197,11 +213,11 @@ export default function Home() {
         <div className="discovery-options section-pad">
           <article className="discovery-option reveal">
             <div className="option-top"><span>Option 01</span><b>$333</b></div>
-            <h3>LA Filmed Discovery</h3>
-            <p>Come to the High Lvl facility in Los Angeles for a filmed strategy session built around your story, goals, and next level.</p>
+            <h3>Filmed Discovery</h3>
+            <p>Join virtually from anywhere, or come to the High Lvl facility in Los Angeles, for a filmed strategy session built around your story, goals, and next level.</p>
             <ul>
               <li>Pre-session brand deep dive</li>
-              <li>High Lvl facility experience</li>
+              <li>Virtual worldwide or in-person in LA</li>
               <li>One-hour strategy session</li>
               <li>Filmed for the content ecosystem</li>
               <li>Growth Map preview</li>
@@ -263,7 +279,7 @@ export default function Home() {
           <fieldset>
             <legend>Preferred discovery</legend>
             <div className="radio-grid two-up">
-              <label><input type="radio" name="discovery" value="filmed-la" required /><span>LA filmed · $333</span></label>
+              <label><input type="radio" name="discovery" value="filmed" required /><span>Filmed · virtual or LA · $333</span></label>
               <label><input type="radio" name="discovery" value="private" /><span>Private · $555</span></label>
             </div>
           </fieldset>

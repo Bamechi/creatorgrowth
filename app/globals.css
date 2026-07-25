@@ -39,6 +39,7 @@
   --paper: #ddd8cb;
   --gold: #c7a259;
   --ember: #e74629;
+  --signal: #a8f4e4;
   --steel: #91a0a6;
   --line-dark: rgba(242, 239, 231, 0.2);
   --line-light: rgba(7, 7, 7, 0.18);
@@ -189,6 +190,94 @@ button:hover .arrow-mark {
   transform: translate(2px, -2px);
 }
 
+.intro-gate {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  animation: intro-gate-clear 2.7s linear forwards;
+}
+
+.intro-panel {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: #050505;
+}
+
+.intro-panel-left {
+  left: 0;
+  animation: intro-panel-left 2.55s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.intro-panel-right {
+  right: 0;
+  animation: intro-panel-right 2.55s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.intro-gate-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  color: var(--bone);
+  text-align: center;
+  animation: intro-content 2.25s ease forwards;
+}
+
+.intro-key {
+  width: 68px;
+  height: 84px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 26px rgba(168, 244, 228, 0.3));
+  animation: intro-key 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.intro-gate-content > span {
+  margin-top: 13px;
+  color: var(--signal);
+  font-family: "Barlow Condensed CG", sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.intro-gate-content strong {
+  display: flex;
+  gap: 11px;
+  margin-top: 13px;
+  font-family: "Unbounded CG", sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.intro-gate-content i {
+  font-style: normal;
+}
+
+.intro-gate-content i:last-child {
+  color: var(--signal);
+}
+
+.intro-progress {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: intro-progress 1.65s 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 0 22px rgba(168, 244, 228, 0.75);
+}
+
 .site-header {
   position: fixed;
   z-index: 50;
@@ -204,6 +293,7 @@ button:hover .arrow-mark {
   border-bottom: 1px solid rgba(242, 239, 231, 0.16);
   background: rgba(7, 7, 7, 0.82);
   backdrop-filter: blur(16px);
+  animation: header-enter 520ms 1.9s ease both;
 }
 
 .brand-lockup {
@@ -285,7 +375,7 @@ button:hover .arrow-mark {
   object-fit: cover;
   object-position: 50% 23%;
   filter: contrast(1.08);
-  animation: hero-enter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: hero-enter 1.2s 1.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .hero-shade {
@@ -306,7 +396,7 @@ button:hover .arrow-mark {
 }
 
 .hero-content {
-  width: min(760px, 58vw);
+  width: min(820px, 66vw);
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -317,7 +407,7 @@ button:hover .arrow-mark {
 
 .hero-eyebrow {
   margin-bottom: 28px;
-  animation: fade-up 700ms 180ms ease both;
+  animation: fade-up 700ms 2s ease both;
 }
 
 .hero h1 {
@@ -327,17 +417,35 @@ button:hover .arrow-mark {
   font-weight: 900;
   line-height: 0.94;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .hero h1 span {
   display: block;
-  animation: fade-up 800ms ease both;
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  animation: fade-up 800ms 1.95s ease both;
 }
 
-.hero h1 span:last-child {
-  color: var(--gold);
-  animation-delay: 90ms;
+.hero h1 .hero-title-signal {
+  color: var(--signal);
+  text-shadow: 0 0 8px rgba(168, 244, 228, 0.4), 0 0 34px rgba(168, 244, 228, 0.24);
+  animation: fade-up 800ms 2.08s ease both, signal-glow 2.8s 2.9s ease-in-out infinite;
+}
+
+.hero-title-signal::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
+  clip-path: inset(0 100% 0 0);
+  animation: title-scan 3.2s 2.65s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .hero-copy {
@@ -347,7 +455,7 @@ button:hover .arrow-mark {
   font-family: "Newsreader CG", serif;
   font-size: 24px;
   line-height: 1.22;
-  animation: fade-up 800ms 180ms ease both;
+  animation: fade-up 800ms 2.2s ease both;
 }
 
 .hero-actions {
@@ -355,7 +463,7 @@ button:hover .arrow-mark {
   align-items: center;
   gap: 24px;
   margin-top: 34px;
-  animation: fade-up 800ms 260ms ease both;
+  animation: fade-up 800ms 2.34s ease both;
 }
 
 .text-link {
@@ -405,22 +513,27 @@ button:hover .arrow-mark {
   color: white;
 }
 
-.marquee div {
+.marquee-track {
   width: max-content;
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 18px 0;
+  animation: marquee 10.5s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 18px 26px 18px 0;
   font-family: "Unbounded CG", sans-serif;
   font-size: 18px;
   text-transform: uppercase;
-  animation: marquee 22s linear infinite;
 }
 
-.marquee i {
+.marquee-group i {
   color: #26100b;
-  font-family: "Newsreader CG", serif;
-  font-size: 30px;
+  font-family: "Barlow Condensed CG", sans-serif;
+  font-size: 24px;
   font-style: normal;
 }
 
@@ -456,7 +569,9 @@ button:hover .arrow-mark {
   font-weight: 900;
   line-height: 1.02;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .manifesto-layout > div > p:last-child {
@@ -523,7 +638,9 @@ button:hover .arrow-mark {
   font-weight: 900;
   line-height: 1.04;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .tension-copy > p:not(.eyebrow):not(.pullquote) {
@@ -834,8 +951,12 @@ button:hover .arrow-mark {
   grid-column: span 2;
 }
 
-.gallery-wide img {
-  object-position: center 30%;
+.gallery-conversation img {
+  object-position: center 62%;
+}
+
+.gallery-event img {
+  object-position: center 18%;
 }
 
 .investment {
@@ -1319,6 +1440,52 @@ footer small {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes header-enter {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes intro-key {
+  from { opacity: 0; transform: scale(0.62) rotate(-8deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes intro-content {
+  0%, 8% { opacity: 0; transform: scale(0.96); }
+  24%, 64% { opacity: 1; transform: scale(1); }
+  82%, 100% { opacity: 0; transform: scale(1.04); }
+}
+
+@keyframes intro-progress {
+  to { transform: scaleX(1); }
+}
+
+@keyframes intro-panel-left {
+  0%, 62% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes intro-panel-right {
+  0%, 62% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes intro-gate-clear {
+  0%, 98% { visibility: visible; }
+  100% { visibility: hidden; }
+}
+
+@keyframes signal-glow {
+  0%, 100% { text-shadow: 0 0 8px rgba(168, 244, 228, 0.38), 0 0 28px rgba(168, 244, 228, 0.2); }
+  50% { text-shadow: 0 0 12px rgba(168, 244, 228, 0.68), 0 0 46px rgba(168, 244, 228, 0.34); }
+}
+
+@keyframes title-scan {
+  0%, 12% { clip-path: inset(0 100% 0 0); }
+  45%, 55% { clip-path: inset(0 0 0 0); }
+  88%, 100% { clip-path: inset(0 0 0 100%); }
+}
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(22px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1385,8 +1552,21 @@ footer small {
     font-size: 14px;
   }
 
+  .hero-content {
+    width: min(760px, 72vw);
+  }
+
   .hero h1 {
-    font-size: 64px;
+    font-size: 56px;
+  }
+
+  .section-intro {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .section-intro .eyebrow {
+    grid-column: auto;
   }
 
   .manifesto h2,
@@ -1413,7 +1593,7 @@ footer small {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .section-pad {
     padding-inline: 20px;
   }
@@ -1496,7 +1676,7 @@ footer small {
     padding: 10px 12px;
   }
 
-  .marquee div {
+  .marquee-group {
     padding-block: 15px;
     font-size: 15px;
   }
@@ -1535,8 +1715,12 @@ footer small {
   .apply-intro h2,
   .faq-heading h2,
   .final-cta h2 {
-    font-size: 36px;
+    font-size: 34px;
     line-height: 1.05;
+  }
+
+  .section-intro h2 {
+    font-size: 30px;
   }
 
   .lead-serif {
@@ -1560,7 +1744,7 @@ footer small {
   .tension-copy h2,
   .authority-copy h2,
   .image-statement h2 {
-    font-size: 35px;
+    font-size: 31px;
   }
 
   .section-intro {

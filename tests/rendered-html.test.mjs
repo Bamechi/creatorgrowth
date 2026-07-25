@@ -20,9 +20,13 @@ test("renders the Creator Growth funnel", async () => {
   assert.match(html, /Creator Growth Program \| 19Keys x High Lvl/i);
   assert.match(html, /Creator/);
   assert.match(html, /Partnerships begin at \$19,000/);
-  assert.match(html, /LA Filmed Discovery/);
+  assert.match(html, /Filmed Discovery/);
+  assert.match(html, /Virtual worldwide or in-person in LA/);
   assert.match(html, /Private Discovery/);
   assert.match(html, /Application for placement/);
   assert.match(html, /Nearly 1M/);
+  assert.match(html, /intro-gate/);
+  assert.match(html, /hero-title-signal/);
+  assert.doesNotMatch(html, />19<\/i>/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/i);
 });
