@@ -1,12 +1,30 @@
 import Image from "next/image";
+import ApplyForm from "./ApplyForm";
+
+const calendar = [
+  ["Sep", "New York", "A media run across the top podcasts."],
+  ["Oct", "London", "Black History Month in the UK. European masterminds and speaking engagements."],
+  ["Nov", "Los Angeles", "The Black Media Summit and address."],
+  ["Jan", "Ethiopia", "With Chaka Bars. Ethiopia and greater Africa, like never before."],
+];
+
+const inclusions = [
+  "Direct access to 19Keys at the moments of highest leverage",
+  "A private partner mastermind series",
+  "VIP access to speaking engagements and live rooms",
+  "Access to 2 Creator Growth events",
+  "Cost-only access to inner-circle trips",
+  "A listed leadership profile in the ecosystem",
+  "Your own private partner room",
+];
 
 const capabilities = [
   ["01", "Narrative", "Position the idea so the market understands why it matters."],
-  ["02", "Media", "Build a content engine that turns vision into consistent cultural signal."],
+  ["02", "Media", "Build a content engine that turns vision into consistent cultural signal — and launch and produce your own podcast alongside the 19Keys media team."],
   ["03", "Distribution", "Place the signal across the right platforms, rooms, and audiences."],
   ["04", "Management", "Install the operators, rhythm, and accountability behind the brand."],
-  ["05", "AI Systems", "Automate the repetitive work and increase the speed of execution."],
-  ["06", "Community", "Convert attention into an owned audience with identity and belonging."],
+  ["05", "AI Systems", "Move faster with your own custom AI agents — voice bots, content engines, and operations automations built for your business, not generic tools."],
+  ["06", "Community", "Convert attention into an owned audience — launch your own community and membership platform inside Ziion: your content home and monetization engine."],
   ["07", "Access", "Create proximity to aligned creators, operators, and opportunities."],
   ["08", "19Keys", "Apply direct strategic perspective at the moments with highest leverage."],
 ];
@@ -27,6 +45,8 @@ const faqs = [
   ["Will I work directly with 19Keys?", "19Keys is the curator and strategic center of the program. His direct involvement is placed at the moments where it can create the most leverage for your partnership."],
   ["Can I join from outside Los Angeles?", "Yes. The $333 filmed discovery is available virtually worldwide or in person at the High Lvl facility in Los Angeles. Private discovery can also happen virtually."],
   ["Why is there a paid discovery?", "The session includes pre-call research, a focused strategy conversation, and a first-look Growth Map. The fee protects the depth of the process and the quality of the room."],
+  ["Is financing available?", "Yes. Qualified partners can finance their growth partnership. We walk through the options during your discovery session so the build can begin without paying the full amount up front."],
+  ["What events do partners get access to?", "Partners receive access to two Creator Growth events, VIP access to select speaking engagements and live rooms, and cost-only access to inner-circle trips. The current itinerary runs New York, London, Los Angeles, and Ethiopia."],
 ];
 
 function ArrowMark() {
@@ -206,11 +226,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="calendar section-pad" id="calendar" aria-labelledby="calendar-title">
+        <div className="calendar-heading reveal">
+          <p className="eyebrow">A partnership in motion</p>
+          <h2 id="calendar-title">You are not joining a program.<br />You are stepping into a calendar.</h2>
+          <p>Partners move with the ecosystem — the rooms, the trips, the stages. Here is where we are headed.</p>
+        </div>
+        <div className="calendar-list">
+          {calendar.map(([month, place, copy]) => (
+            <article className="calendar-row reveal" key={month}>
+              <span className="calendar-month">{month}</span>
+              <h3>{place}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+        <p className="calendar-foot reveal">Partner access to select rooms is built into your Growth Map. Inner-circle trips are offered at cost. <em>Itinerary planned and subject to change.</em></p>
+      </section>
+
       <section className="investment" id="discovery">
         <div className="investment-head section-pad reveal">
           <p className="eyebrow">The standard</p>
           <h2>Partnerships begin at $19,000.</h2>
           <p>Final investment is determined by your Growth Map, the capabilities selected, and the intensity of execution. The first step is a paid discovery designed to produce value before a partnership is offered.</p>
+        </div>
+
+        <div className="inclusions section-pad reveal">
+          <p className="eyebrow">What every partnership includes</p>
+          <ul className="inclusions-list">
+            {inclusions.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
         <div className="discovery-options section-pad">
           <article className="discovery-option reveal">
@@ -240,6 +287,7 @@ export default function Home() {
             <a className="button button-light" href="#apply">Request private session <ArrowMark /></a>
           </article>
         </div>
+        <p className="investment-note section-pad reveal">Growth partnerships can be financed. Ask about financing options during your discovery session.</p>
       </section>
 
       <section className="apply-section section-pad" id="apply">
@@ -258,37 +306,7 @@ export default function Home() {
           </div>
         </div>
 
-        <form className="application-form reveal" action="#apply" method="get">
-          <div className="field-row">
-            <label>First name<input type="text" name="first-name" autoComplete="given-name" required /></label>
-            <label>Last name<input type="text" name="last-name" autoComplete="family-name" required /></label>
-          </div>
-          <div className="field-row">
-            <label>Email<input type="email" name="email" autoComplete="email" required /></label>
-            <label>Phone<input type="tel" name="phone" autoComplete="tel" required /></label>
-          </div>
-          <label>Business / brand<input type="text" name="brand" required /></label>
-          <label>Website or primary social link<input type="url" name="website" placeholder="https://" required /></label>
-          <label>What are you building next?<textarea name="vision" rows={4} required /></label>
-          <fieldset>
-            <legend>Investment readiness</legend>
-            <div className="radio-grid">
-              <label><input type="radio" name="investment" value="19-30" required /><span>$19K - $30K</span></label>
-              <label><input type="radio" name="investment" value="30-75" /><span>$30K - $75K</span></label>
-              <label><input type="radio" name="investment" value="75-plus" /><span>$75K+</span></label>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Preferred discovery</legend>
-            <div className="radio-grid two-up">
-              <label><input type="radio" name="discovery" value="filmed" required /><span>Filmed · virtual or LA · $333</span></label>
-              <label><input type="radio" name="discovery" value="private" /><span>Private · $555</span></label>
-            </div>
-          </fieldset>
-          <label className="consent"><input type="checkbox" required /><span>I understand Creator Growth partnerships begin at $19,000 and discovery sessions are paid.</span></label>
-          <button className="button button-gold" type="submit">Submit application <ArrowMark /></button>
-          <p className="form-note">Your future application or calendar link can be connected here without changing this design.</p>
-        </form>
+        <ApplyForm />
       </section>
 
       <section className="faq section-pad">
