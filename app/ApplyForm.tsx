@@ -1,17 +1,7 @@
 "use client";
 
-import { useState } from "react";
-
-/*
- * ONE VALUE TO SET AFTER YOU DEPLOY THE GOOGLE APPS SCRIPT:
- * Paste your Apps Script Web App URL below (ends in /exec).
- * Until it is set, the form still works — it simply skips the sheet write
- * and goes straight to the payment step, so the page never breaks.
- */
-const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbw_oIZpxme-u2jr0zGvrDV5v3_o3M-sHZNVQVOq6DXS1IyY_xrRKDGS7uvseHTBlCMQ/exec";
-
-const STRIPE_FILMED = "https://buy.stripe.com/aFa00kcmR2542Zfdsi1Fe0i";
-const STRIPE_PRIVATE = "https://buy.stripe.com/fZu4gAbiNaBAbvL9c21Fe0j";
+import { useEffect, useState } from "react";
+import { STRIPE_FILMED, STRIPE_PRIVATE, postToSheet } from "./config";
 
 function ArrowMark() {
   return (
@@ -25,6 +15,15 @@ export default function ApplyForm() {
   const [open, setOpen] = useState(false);
   const [choice, setChoice] = useState<"filmed" | "private">("filmed");
   const [submitting, setSubmitting] = useState(false);
+  const [pkg, setPkg] = useState("");
+
+  useEffect(() => {
+    function onPackage(e: Event) {
+      setPkg(String((e as CustomEvent).detail || ""));
+    }
+    window.addEventListener("cg:package", onPackage);
+    return () => window.removeEventListener("cg:package", onPackage);
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,6 +31,8 @@ export default function ApplyForm() {
     const data = new FormData(form);
 
     const payload = {
+      type: "application",
+      package: pkg,
       firstName: String(data.get("first-name") || ""),
       lastName: String(data.get("last-name") || ""),
       email: String(data.get("email") || ""),
@@ -47,18 +48,7 @@ export default function ApplyForm() {
     setChoice(payload.discovery === "private" ? "private" : "filmed");
     setSubmitting(true);
 
-    if (SHEET_ENDPOINT) {
-      try {
-        await fetch(SHEET_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        // Non-blocking: never trap the applicant on a network hiccup.
-      }
-    }
+    await postToSheet(payload);
 
     setSubmitting(false);
     setOpen(true);
@@ -67,6 +57,12 @@ export default function ApplyForm() {
   return (
     <>
       <form className="application-form reveal" onSubmit={handleSubmit}>
+        {pkg ? (
+          <div className="package-chip">
+            <span>Your package</span>
+            <p>{pkg}</p>
+          </div>
+        ) : null}
         <div className="field-row">
           <label>First name<input type="text" name="first-name" autoComplete="given-name" required /></label>
           <label>Last name<input type="text" name="last-name" autoComplete="family-name" required /></label>
@@ -107,7 +103,7 @@ export default function ApplyForm() {
             <button className="discovery-modal-close" onClick={() => setOpen(false)} aria-label="Close">&#215;</button>
             <p className="eyebrow">Application received</p>
             <h3 id="discovery-modal-title">Secure your discovery session.</h3>
-            <p className="discovery-modal-copy">Choose your session and complete payment. Your scheduling calendar opens immediately after checkout.</p>
+            <p className="discovery-modal-copy">Choose your session and complete payment. Your scheduling calendar opens immediately after checkout. This payment is credited toward your $19,000 package once you lock in your services.</p>
 
             <div className="discovery-modal-options">
               <a
